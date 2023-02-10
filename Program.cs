@@ -1,5 +1,5 @@
 ﻿using CA230210;
-
-GameOfLife glf = new(20, 40, 1999);
+Random rnd = new();
+GameOfLife glf = new(30, 30, rnd.Next());
 
 while (true) glf.Simulate();

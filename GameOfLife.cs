@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Spectre.Console;
 
 namespace CA230210
 {
@@ -22,13 +23,8 @@ namespace CA230210
                 for (int c = 0; c < Matrix.GetLength(1); c++)
                 {
                     int non = NoNeighbours(r, c);
-                    if (Matrix[r, c])
-                    {
-                        if (non == 2 || non == 3) next[r, c] = true;
-                        else next[r, c] = false; //DONT NEED
-                    }
+                    if (Matrix[r, c] && (non == 2 || non == 3)) next[r, c] = true;
                     else if (non == 3) next[r, c] = true;
-                    else next[r, c] = false; //DONT NEED
                 }
             }
             return next;
@@ -55,9 +51,9 @@ namespace CA230210
         public void Simulate()
         {
             Draw();
-            Thread.Sleep(800);
+            Thread.Sleep(120);
             Matrix = NextState();
-            Console.Clear();
+            AnsiConsole.Cursor.SetPosition(0, 0);
         }
 
         public void Draw()
@@ -66,9 +62,9 @@ namespace CA230210
             {
                 for (int c = 0; c < Matrix.GetLength(1); c++)
                 {
-                    Console.Write(Matrix[r, c] ? '#' : ' ');
+                    AnsiConsole.Write(Matrix[r, c] ? '\u2588' : ' ');
                 }
-                Console.Write('\n');
+                AnsiConsole.Write('\n');
             }
         }
 
