@@ -16,8 +16,6 @@ namespace CA230210
         {
             bool[,] next = new bool[Matrix.GetLength(0), Matrix.GetLength(1)];
 
-            //TODO
-
             for (int r = 0; r < Matrix.GetLength(0); r++)
             {
                 for (int c = 0; c < Matrix.GetLength(1); c++)
@@ -70,6 +68,10 @@ namespace CA230210
 
         public GameOfLife(int row, int col, int seed)
         {
+
+            Console.SetWindowSize(col, row + 1);
+            Console.CursorVisible = false;
+
             random = new(seed);
             Matrix = new bool[row, col];
 
